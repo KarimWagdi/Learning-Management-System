@@ -1,3 +1,4 @@
+import { UserGroup } from './../entity/UserGroup';
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { User } from "../entity/UserEntity";
@@ -14,7 +15,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: true,
   logging: false,
-  entities: [User,_Group],
+  entities: [User , UserGroup, _Group],
   migrations: [],
   subscribers: [],
 });
