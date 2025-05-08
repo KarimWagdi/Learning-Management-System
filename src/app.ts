@@ -2,10 +2,16 @@ import  Express  from "express";
 import { AppDataSource } from"./Config/dbConfig";
 
 const app = Express();
-
-AppDataSource.initialize()
 const PORT = 3000;
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+AppDataSource.initialize()
+  .then(() => {
+    app.listen(process.env.APP_PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  })
+  .catch((err: Error) => {
+    console.error("Error during Data Source initialization", err);
+  });
+
+
