@@ -1,31 +1,29 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+
+import { Column, CreateDateColumn, DeleteDateColumn, Entity,  PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
-export class Course {
+export class Group{
     @PrimaryGeneratedColumn()
-    id!: number;
+    number_of_student!:number;
 
     @Column()
-    imageUrl!: string
+    startDate!: number;
 
     @Column()
-    duration!: string
+    endDate!:number;
 
     @Column()
-    rate!: number
+    courses!:string;
 
     @Column()
-    details!: string
-
-    @Column()
-    videoUrl!: string
+    review!:string;
 
     @CreateDateColumn({ type: "timestamp" })
     createdAt!: Date;
-
+    
     @UpdateDateColumn({ type: "timestamp" })
     updatedAt!: Date;   
-
+    
     @DeleteDateColumn({ nullable: true })
     deletedAt?: Date;
 }

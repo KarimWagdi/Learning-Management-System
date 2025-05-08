@@ -5,33 +5,27 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
     DeleteDateColumn,
-    ManyToOne,
-    JoinColumn,
-    OneToOne
   } from "typeorm";
-  // import { User } from "./UserEntity"; // Adjust path as needed
   
   @Entity()
   export class UserAttach {
     @PrimaryGeneratedColumn()
     id!: number;
   
-    // @OneToOne(() => User)
-    // @JoinColumn({ name: "userId" }) // Creates foreign key column 'userId'
-    // @Column()
-    // user!: User;
+    @Column()
+    user_id!: number;
   
     @Column()
-    idFront!: string;
+    img_id_front!: string;
   
     @Column()
-    idBack!: string;
+    img_id_back!: string;
   
     @Column()
     salary!: number;
   
     @Column()
-    mobileNumber!: number;
+    mobile_number!: number;
 
     @CreateDateColumn({ type: "timestamp" })
     createdAt!: Date;
@@ -41,7 +35,5 @@ import {
 
     @DeleteDateColumn({ nullable: true })
     deletedAt?: Date;
-
-
   }
   

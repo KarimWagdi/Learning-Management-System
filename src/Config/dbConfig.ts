@@ -1,11 +1,11 @@
-import { UserGroup } from './../entity/UserGroup';
+import { UserGroup } from '../entity/UserGroupEntity';
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { User } from "../entity/UserEntity";
-import { CorsesTask } from "../entity/CorsesTask";
+import { CorsesTask } from "../entity/CorsesTaskEntity";
 import dotenv from "dotenv";
-import {UserAttach} from '../entity/UserAttach'
-import { _Group } from "../entity/Group";
+import {UserAttach} from '../entity/UserAttachEntity'
+import { Group } from "../entity/GroupEntity";
 
 dotenv.config();
 
@@ -18,7 +18,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: true,
   logging: false,
-  entities: [User, CorsesTask,UserAttach, UserGroup, _Group],
+  entities: [User, CorsesTask,UserAttach, UserGroup, Group],
   migrations: [],
   subscribers: [],
 });

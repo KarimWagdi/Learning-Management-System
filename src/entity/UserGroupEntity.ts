@@ -7,10 +7,10 @@ export class UserGroup{
     id!:number ; 
 
     @Column()
-    userId! : number ; 
+    user_id! : number ; 
 
     @Column()
-    groupId!:number; 
+    group_id!:number; 
     
     @CreateDateColumn({type:"timestamp"} ) 
     createdAt!: Date ; 

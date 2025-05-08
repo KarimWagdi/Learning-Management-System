@@ -7,15 +7,17 @@ export class CorsesTask {
     id!: number;
 
     @Column()
-    corseId!: number;
+    corse_id!: number;
 
     @Column()
-    taskId!: number;
+    task_id!: number;
+
     @CreateDateColumn({type: "timestamp" })
     createdAt!: Date;
+
     @UpdateDateColumn({type: "timestamp" })
     updatedAt!: Date;
+
     @DeleteDateColumn({type: "timestamp" })
     deletedAt!: Date;
-    
 }
