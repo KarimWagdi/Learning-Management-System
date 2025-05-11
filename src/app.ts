@@ -1,8 +1,13 @@
 import  Express  from "express";
 import { AppDataSource } from"./Config/dbConfig";
-
+import  Router from "./routes/IndexRoute";
 const app = Express();
 
+
+app.use(Express.json());
+app.use(Express.urlencoded({ extended: true }));
+
+app.use("/api", Router);
 
 AppDataSource.initialize()
   .then(() => {
