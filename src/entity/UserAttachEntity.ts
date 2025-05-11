@@ -14,6 +14,8 @@ import { User } from "./UserEntity";
   export class UserAttach {
     @PrimaryGeneratedColumn()
     id!: number;
+
+
   
     @OneToOne(() => User, (user) => user.id)
     @JoinColumn(({ name: "user_id" }))
@@ -39,5 +41,7 @@ import { User } from "./UserEntity";
 
     @DeleteDateColumn({ nullable: true })
     deletedAt?: Date;
+
+    
   }
   
