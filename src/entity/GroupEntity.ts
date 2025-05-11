@@ -1,11 +1,12 @@
 
-import { Column, CreateDateColumn, DeleteDateColumn, Entity,  PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity,  OneToMany,  PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { UserGroup } from "./UserGroupEntity";
 
 @Entity()
 export class Group{
     @PrimaryGeneratedColumn()
     id!:number;
-    
+
     @Column()
     number_of_student!:number;
 
@@ -29,4 +30,7 @@ export class Group{
     
     @DeleteDateColumn({ nullable: true })
     deletedAt?: Date;
+
+    @OneToMany(() => UserGroup, (userGroup) => userGroup.group_id)
+    userGroup!: UserGroup[];
 }

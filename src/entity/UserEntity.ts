@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToOne, OneToMany } from "typeorm";
 import { UserAttach } from "./UserAttachEntity";
+import { UserGroup } from "./UserGroupEntity";
 
 export enum UserRole {
     ADMIN = "admin",
@@ -38,4 +39,7 @@ export class User {
 
     @OneToOne(() => UserAttach, (userAttach) => userAttach.user_id)
     userAttach!: UserAttach;
+    
+    @OneToMany(()=> UserGroup , (userGroup) => userGroup.user_id)
+    userGroup!: UserGroup[];
 }
