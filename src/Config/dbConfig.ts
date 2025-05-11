@@ -6,6 +6,7 @@ import { CorsesTask } from "../entity/CorsesTaskEntity";
 import dotenv from "dotenv";
 import {UserAttach} from '../entity/UserAttachEntity'
 import { Group } from "../entity/GroupEntity";
+import { GroupRate } from "../entity/GroupRateEntity"; 
 
 dotenv.config();
 
@@ -18,7 +19,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: true,
   logging: false,
-  entities: [User, CorsesTask,UserAttach, UserGroup, Group],
+  entities: [User, CorsesTask,UserAttach, UserGroup, Group, GroupRate],
   migrations: [],
   subscribers: [],
 });

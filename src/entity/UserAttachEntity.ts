@@ -11,6 +11,8 @@ import {
   export class UserAttach {
     @PrimaryGeneratedColumn()
     id!: number;
+
+
   
     @Column()
     user_id!: number;
@@ -35,5 +37,7 @@ import {
 
     @DeleteDateColumn({ nullable: true })
     deletedAt?: Date;
+
+    
   }
   
