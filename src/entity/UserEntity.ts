@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToOne } from "typeorm";
+import { UserAttach } from "./UserAttachEntity";
 
 export enum UserRole {
     ADMIN = "admin",
@@ -34,4 +35,7 @@ export class User {
 
     @DeleteDateColumn({ nullable: true })
     deletedAt?: Date;
+
+    @OneToOne(() => UserAttach, (userAttach) => userAttach.user_id)
+    userAttach!: UserAttach;
 }

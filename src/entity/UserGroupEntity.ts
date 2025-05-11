@@ -1,4 +1,6 @@
-import { Entity , PrimaryGeneratedColumn , Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm";
+import { Entity , PrimaryGeneratedColumn , Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, ManyToMany, ManyToOne, JoinColumn } from "typeorm";
+import { Group } from "./GroupEntity";
+import { User } from "./UserEntity";
 
 
 @Entity()
@@ -6,10 +8,12 @@ export class UserGroup{
     @PrimaryGeneratedColumn()
     id!:number ; 
 
-    @Column()
+    @ManyToOne(() => User , (user) => user.id)
+    @JoinColumn({ name: "user_id" })
     user_id! : number ; 
 
-    @Column()
+    @ManyToOne(() => Group , (group) => group.id)
+    @JoinColumn({ name: "group_id" })
     group_id!:number; 
     
     @CreateDateColumn({type:"timestamp"} ) 

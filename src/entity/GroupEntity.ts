@@ -4,6 +4,9 @@ import { Column, CreateDateColumn, DeleteDateColumn, Entity,  PrimaryGeneratedCo
 @Entity()
 export class Group{
     @PrimaryGeneratedColumn()
+    id!:number;
+    
+    @Column()
     number_of_student!:number;
 
     @Column()

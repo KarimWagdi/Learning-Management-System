@@ -9,8 +9,8 @@ export class CorsesTask {
     @Column()
     corse_id!: number;
 
-    @Column()
-    task_id!: number;
+    // @Column()
+    // task_id!: number;
 
     @CreateDateColumn({type: "timestamp" })
     createdAt!: Date;

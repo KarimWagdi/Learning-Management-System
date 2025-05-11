@@ -5,15 +5,19 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
     DeleteDateColumn,
+    OneToOne,
+    JoinColumn,
   } from "typeorm";
+import { User } from "./UserEntity";
   
   @Entity()
   export class UserAttach {
     @PrimaryGeneratedColumn()
     id!: number;
   
-    @Column()
-    user_id!: number;
+    @OneToOne(() => User, (user) => user.id)
+    @JoinColumn(({ name: "user_id" }))
+    user_id!: User;
   
     @Column()
     img_id_front!: string;
