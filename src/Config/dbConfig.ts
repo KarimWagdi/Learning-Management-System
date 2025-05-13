@@ -1,4 +1,3 @@
-import { UserGroup } from '../entity/UserGroupEntity';
 import "reflect-metadata";
 import dotenv from "dotenv";
 import { UserGroup } from '../entity/UserGroupEntity';
@@ -19,7 +18,7 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  synchronize: true,
+  synchronize: false,
   logging: false,
   entities: [User, Course, CourseTask, UserAttach, UserGroup, Group, GroupRate],
   migrations: [],
