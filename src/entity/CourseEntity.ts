@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { CourseTask } from "./CourseTaskEntity";
 
 @Entity()
 export class Course {
@@ -24,8 +25,11 @@ export class Course {
     createdAt!: Date;
 
     @UpdateDateColumn({ type: "timestamp" })
-    updatedAt!: Date;   
+    updatedAt!: Date;
 
     @DeleteDateColumn({ nullable: true })
     deletedAt?: Date;
+
+    @OneToMany(() => CourseTask, (courseTask) => courseTask.course_id)
+    courseTask!: CourseTask[]
 }
