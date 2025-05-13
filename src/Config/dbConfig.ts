@@ -1,12 +1,14 @@
 import { UserGroup } from '../entity/UserGroupEntity';
 import "reflect-metadata";
+import dotenv from "dotenv";
+import { UserGroup } from '../entity/UserGroupEntity';
 import { DataSource } from "typeorm";
 import { User } from "../entity/UserEntity";
-import { CorsesTask } from "../entity/CorsesTaskEntity";
-import dotenv from "dotenv";
-import {UserAttach} from '../entity/UserAttachEntity'
+import { CourseTask } from "../entity/CourseTaskEntity";
+import { UserAttach } from '../entity/UserAttachEntity'
 import { Group } from "../entity/GroupEntity";
-import { GroupRate } from "../entity/GroupRateEntity"; 
+import { GroupRate } from "../entity/GroupRateEntity";
+import { Course } from '../entity/CourseEntity';
 
 dotenv.config();
 
@@ -19,7 +21,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: true,
   logging: false,
-  entities: [User, CorsesTask,UserAttach, UserGroup, Group, GroupRate],
+  entities: [User, Course, CourseTask, UserAttach, UserGroup, Group, GroupRate],
   migrations: [],
   subscribers: [],
 });
@@ -27,7 +29,7 @@ export const AppDataSource = new DataSource({
 AppDataSource.initialize()
   .then(() => {
     console.log("Data Source has been initialized!");
-})
+  })
   .catch((err: Error) => {
-    console.error("Error during Data Source initialization");
-});
+    console.error("Error during Data Source initialization", err);
+  });

@@ -1,29 +1,29 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, BeforeInsert } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm";
 
 
 
 @Entity()
-export class GroupRate { 
+export class GroupRate {
     @PrimaryGeneratedColumn()
-    id!: number;   
-                       
-    @Column()
-    user_id!: number;  
+    id!: number;
 
     @Column()
-    group_id!: number; 
+    user_id!: number;
+
+    @Column()
+    group_id!: number;
 
     @Column({ type: "int", width: 1 })
-    rate!: number;  
+    rate!: number;
 
     @Column("text")
-    comment!: string;  
+    comment!: string;
 
     @CreateDateColumn({ type: "timestamp" })
     createdAt!: Date;
 
     @UpdateDateColumn({ type: "timestamp" })
-    updatedAt!: Date;   
+    updatedAt!: Date;
 
     @DeleteDateColumn({ nullable: true })
     deletedAt?: Date;

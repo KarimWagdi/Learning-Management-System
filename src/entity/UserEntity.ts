@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToOne, OneToMany } from "typeorm";
 import { UserAttach } from "./UserAttachEntity";
 import { UserGroup } from "./UserGroupEntity";
+import { CourseTask } from "./CourseTaskEntity";
 
 export enum UserRole {
     ADMIN = "admin",
@@ -19,7 +20,7 @@ export class User {
     @Column({ unique: true, nullable: false })
     email!: string;
 
-    @Column()
+    @Column({select:false})
     password!: string;
 
     @Column()
@@ -32,14 +33,17 @@ export class User {
     createdAt!: Date;
 
     @UpdateDateColumn({ type: "timestamp" })
-    updatedAt!: Date;   
+    updatedAt!: Date;
 
     @DeleteDateColumn({ nullable: true })
     deletedAt?: Date;
 
     @OneToOne(() => UserAttach, (userAttach) => userAttach.user_id)
     userAttach!: UserAttach;
-    
-    @OneToMany(()=> UserGroup , (userGroup) => userGroup.user_id)
+
+    @OneToMany(() => UserGroup, (userGroup) => userGroup.user_id)
     userGroup!: UserGroup[];
+
+    @OneToMany(() => CourseTask, (courseTask) => courseTask.user_id)
+    courseTask!: CourseTask[]
 }
