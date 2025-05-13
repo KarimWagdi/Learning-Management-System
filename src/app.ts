@@ -9,6 +9,7 @@ app.use(Express.urlencoded({ extended: true }));
 
 app.use("/api", Router);
 
+
 AppDataSource.initialize()
   .then(() => {
     app.listen(process.env.APP_PORT, () => {
