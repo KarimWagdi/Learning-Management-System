@@ -1,36 +1,43 @@
-
-import { Column, CreateDateColumn, DeleteDateColumn, Entity,  OneToMany,  PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
 import { UserGroup } from "./UserGroupEntity";
 
 @Entity()
-export class Group{
-    @PrimaryGeneratedColumn()
-    id!:number;
+export class Group {
+  @PrimaryGeneratedColumn()
+  id!: number;
 
-    @Column()
-    number_of_student!:number;
+  @Column({ default: 0 }) // Default value for number_of_student
+  number_of_student!: number;
 
-    @Column()
-    startDate!: number;
+  @Column() // Default value for startDate
+  startDate!: number;
 
-    @Column()
-    endDate!:number;
+  @Column() // Default value for endDate
+  endDate!: number;
 
-    @Column()
-    courses!:string;
+  @Column({ default: "" }) // Default value for courses
+  courses!: string;
 
-    @Column()
-    review!:string;
+  @Column({ default: "" }) // Default value for review
+  review!: string;
 
-    @CreateDateColumn({ type: "timestamp" })
-    createdAt!: Date;
-    
-    @UpdateDateColumn({ type: "timestamp" })
-    updatedAt!: Date;   
-    
-    @DeleteDateColumn({ nullable: true })
-    deletedAt?: Date;
+  @CreateDateColumn({ type: "timestamp" })
+  createdAt!: Date;
 
-    @OneToMany(() => UserGroup, (userGroup) => userGroup.group_id)
-    userGroup!: UserGroup[];
+  @UpdateDateColumn({ type: "timestamp" })
+  updatedAt!: Date;
+
+  @DeleteDateColumn({ nullable: true })
+  deletedAt?: Date;
+
+  @OneToMany(() => UserGroup, (userGroup) => userGroup.group_id)
+  userGroup!: UserGroup[];
 }
