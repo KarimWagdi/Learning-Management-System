@@ -1,3 +1,4 @@
+import { UserGroup } from '../entity/UserGroupEntity';
 import "reflect-metadata";
 import dotenv from "dotenv";
 import { UserGroup } from '../entity/UserGroupEntity';
