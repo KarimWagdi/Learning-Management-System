@@ -57,7 +57,7 @@ export default class UserGroupController{
             const UserGroupRepo = AppDataSource.getRepository(UserGroup)
             const item = await UserGroupRepo.findOne({where:{id: +(req.params.id)}}) ; 
             if(!item){
-                res.status(404).json({message:"product not found"}) 
+                res.status(404).json({message:"item not found"}) 
 
             }else{
                 UserGroupRepo.merge(item , req.body)  ; 

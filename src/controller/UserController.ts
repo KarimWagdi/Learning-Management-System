@@ -1,7 +1,7 @@
 import { User } from "../entity/UserEntity";
 import { Request, Response } from "express";
 import { AppDataSource } from "../Config/dbConfig";
-
+import bcrypt  from "bcrypt"; 
 export default class UserController {
   // Add a new user
 
@@ -10,10 +10,17 @@ export default class UserController {
     res: Response
   ): Promise<void> => {
     try {
-      const { name, email, password, role, imgUrl } = req.body;
       const userRepo = AppDataSource.getRepository(User);
-      const newUser = userRepo.create({ name, email, password, role, imgUrl });
-      const emailExist = await userRepo.findOneBy({ email });
+      const hashedPassword = await bcrypt.hash(req.body.password , 10 ) ; 
+      
+      const newUser = userRepo.create({ 
+         name:req.body.name,
+         email:req.body.email,
+         password: hashedPassword
+        ,role:req.body.role,
+        //  imgUrl
+         });
+      const emailExist = await userRepo.findOneBy({ email: req.body.email });
       if (emailExist) res.status(400).json({ message: "email already exist" });
       if (!newUser) res.status(400).json({ message: "error during create" });
       if (!newUser.imgUrl) newUser.imgUrl == null;
