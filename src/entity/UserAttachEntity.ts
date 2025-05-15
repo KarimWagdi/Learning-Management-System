@@ -15,6 +15,10 @@ export class UserAttach {
   @PrimaryGeneratedColumn()
   id!: number;
 
+  @OneToOne(() => User, (user) => user.id)
+  @JoinColumn(({ name: "user_id" }))
+  user_id!: User;
+  
   @Column()
   img_id_front!: string;
 
@@ -26,10 +30,6 @@ export class UserAttach {
 
   @Column()
   mobile_number!: number;
-
-  @OneToOne(() => User, (user) => user.id)
-  @JoinColumn(({ name: "user_id" }))
-  user_id!: number;
 
   @CreateDateColumn({ type: "timestamp" })
   createdAt!: Date;

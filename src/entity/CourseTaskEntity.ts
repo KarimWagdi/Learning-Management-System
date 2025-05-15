@@ -10,11 +10,11 @@ export class CourseTask {
 
     @ManyToOne(() => Course, (course) => course.id)
     @JoinColumn({ name: 'course_id' })
-    course_id!: number;
+    course_id!: Course;
 
     @ManyToOne(() => User, (user) => user.id)
     @JoinColumn({ name: 'user_id' })
-    user_id!: number;
+    user_id!: User;
 
     @CreateDateColumn({ type: "timestamp" })
     createdAt!: Date;
