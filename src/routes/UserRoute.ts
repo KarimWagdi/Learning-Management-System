@@ -9,4 +9,7 @@ router.delete("/:id", UserController.deleteUser);
 router.put("/:id", UserController.updateUser);
 
 
+router.post('/login', UserController.loginUser);
+router.post('/logout', UserController.logoutUser);
+
 export default router;
