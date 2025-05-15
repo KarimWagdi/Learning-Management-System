@@ -1,7 +1,7 @@
 import { User } from "../entity/UserEntity";
 import { Request, Response } from "express";
 import { AppDataSource } from "../Config/dbConfig";
-
+import bcrypt from "bcrypt";
 export default class UserController {
   // Add a new user
 
@@ -10,20 +10,47 @@ export default class UserController {
     res: Response
   ): Promise<void> => {
     try {
-      const { name, email, password, role, imgUrl } = req.body;
       const userRepo = AppDataSource.getRepository(User);
-      const newUser = userRepo.create({ name, email, password, role, imgUrl });
-      const emailExist = await userRepo.findOneBy({ email });
-      if (emailExist) res.status(400).json({ message: "email already exist" });
-      if (!newUser) res.status(400).json({ message: "error during create" });
-      if (!newUser.imgUrl) newUser.imgUrl == null;
-
-      await userRepo.save(newUser);
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      const newUser = userRepo.create({
+        name: req.body.name,
+        email: req.body.email,
+        password: hashedPassword,
+        role: req.body.role,
+        // imgUrl: req.body.imgUrl,
+      });
+      await userRepo.save(newUser);     
       res.status(200).json(newUser);
     } catch (error) {
-      res.status(500).json({ message: "Internal Server Errors" });
+      res.status(500).json({ message: "Internal Server Errors" , error});
     }
   };
+  
+  // Login user
+  public static loginUser = async (
+    req: Request,
+    res: Response
+  ): Promise<void> => {
+    try {
+      const userRepo = AppDataSource.getRepository(User);
+      const user = await userRepo.findOneBy({email: req.body.email});
+      if (!user) {
+         res.status(404).json({ message: "User not found" });
+         return
+      }
+      const isPasswordValid = await bcrypt.compare(
+        req.body.password,
+        user.password
+      );
+      if (!isPasswordValid) {
+         res.status(401).json({ message: "Invalid password" });
+         return
+      }
+    } catch (error) {
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  }
+      // Generate a token here if needed
   // Get all users
 
   public static getUser = async (

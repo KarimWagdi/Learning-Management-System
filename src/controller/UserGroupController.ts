@@ -8,8 +8,9 @@ export default class UserGroupController{
 
     // private userGroupRepo  ;
 
-    // constructor(){
-    //     this.userGroupRepo = AppDataSource.getRepository(UserGroup)
+    // constructor(
+    //     private userGroupRepo: Repository<UserGroup>){
+    //    
     // }
 
     // getUserGroupRepo(){
