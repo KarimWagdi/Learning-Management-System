@@ -15,7 +15,7 @@ const extractErrorRecursively = (error: ValidationError, rawErrors: string[]) =>
     }
 }
 const requestValidator = (requestType: any) => {
-  return async (req: Request, res: any, next: NextFunction) => {
+  return async (req: any, res: any, next: NextFunction) => {
     const converterObject: any = plainToInstance(requestType, req.body);
     const valid = await validate(converterObject)
     if (valid.length > 0) {
