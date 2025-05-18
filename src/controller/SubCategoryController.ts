@@ -10,8 +10,9 @@ export default class SubCategoryController {
             const newSubCategory = subCategoryRepo.create(req.body);
             await subCategoryRepo.save(newSubCategory);
             res.status(201).json(newSubCategory);
-        } catch (error) {
-            res.status(500).json({ message: "Internal Server Error" });
+        } catch (error){
+            console.error(error); // Add this line to log the actual error
+            res.status(500).json({message: "Internal Server Error", error: error instanceof Error ? error.message : 'Unknown error occurred'})
         }
     };
 
@@ -21,8 +22,9 @@ export default class SubCategoryController {
             const subCategoryRepo = AppDataSource.getRepository(SubCategory);
             const subCategories = await subCategoryRepo.find();
             res.status(200).json(subCategories);
-        } catch (error) {
-            res.status(500).json({ message: "Internal Server Error" });
+        } catch (error){
+            console.error(error); // Add this line to log the actual error
+            res.status(500).json({message: "Internal Server Error", error: error instanceof Error ? error.message : 'Unknown error occurred'})
         }
     };
 
@@ -36,8 +38,9 @@ export default class SubCategoryController {
             } else {
                 res.status(404).json({ message: "SubCategory not found" });
             }
-        } catch (error) {
-            res.status(500).json({ message: "Internal Server Error" });
+        } catch (error){
+            console.error(error); // Add this line to log the actual error
+            res.status(500).json({message: "Internal Server Error", error: error instanceof Error ? error.message : 'Unknown error occurred'})
         }
     };
 
@@ -53,8 +56,9 @@ export default class SubCategoryController {
             } else {
                 res.status(404).json({ message: "SubCategory not found" });
             }
-        } catch (error) {
-            res.status(500).json({ message: "Internal Server Error" });
+        } catch (error){
+            console.error(error); // Add this line to log the actual error
+            res.status(500).json({message: "Internal Server Error", error: error instanceof Error ? error.message : 'Unknown error occurred'})
         }
     };
 
