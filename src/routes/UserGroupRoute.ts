@@ -1,20 +1,13 @@
-import { Router  } from "express";
+import { Router } from "express";
 import UserGroupController from "../controller/UserGroupController";
-import requestValidator from "../middelware/RequestValidate";
-import {  addUserGroupRequest } from "../Request/UserGroupRequest";
+import requestValidator from "../middleware/RequestValidate";
+import { addUserGroupRequest } from "../request/UserGroupRequest";
 
 const router = Router();
 
 router.get("/", UserGroupController.getUserGroup);
-
 router.post("/", requestValidator(addUserGroupRequest), UserGroupController.addUserGroup);
-router.delete("/:id" , UserGroupController.deleteUserGroup) ; 
 router.put("/:id",  UserGroupController.updateUserGroup ) ; 
-
-// router.post("/login", UserController.loginUser);
-
-// router.put("/:id", UserController.updateUser);
-
-// router.delete("/:id", UserController.deleteUser);
+router.delete("/:id" , UserGroupController.deleteUserGroup) ;
 
 export default router;
