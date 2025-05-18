@@ -5,9 +5,12 @@ import { addUserRequest } from "../Request/UserRequest";
 const router = Router();
 
 router.get("/", UserController.getUser);
+
+router.post("/login", UserController.loginUser);
+
 router.get('/:id', UserController.getUserById)
 router.post("/", requestValidator(addUserRequest), UserController.addUser);
-router.post("/login", UserController.getUser);
+
 router.delete("/:id", UserController.deleteUser);
 router.put("/:id", UserController.updateUser);
 
