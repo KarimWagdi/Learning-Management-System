@@ -8,6 +8,7 @@ import { UserAttach } from '../entity/UserAttachEntity'
 import { Group } from "../entity/GroupEntity";
 import { GroupRate } from "../entity/GroupRateEntity";
 import { Course } from '../entity/CourseEntity';
+import {SubCategory } from "../entity/SubCategoryEntity"
 
 dotenv.config();
 
@@ -18,9 +19,9 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  synchronize: false,
+  synchronize: true,
   logging: false,
-  entities: [User, Course, CourseTask, UserAttach, UserGroup, Group, GroupRate],
+  entities: [User, Course, CourseTask, UserAttach, UserGroup, Group, GroupRate, SubCategory],
   migrations: [],
   subscribers: [],
 });

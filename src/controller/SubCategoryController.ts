@@ -1,4 +1,4 @@
-import { SubCategory } from "../entity/SubCategoryController";
+import { SubCategory } from "../entity/SubCategoryEntity";
 import { Request, Response } from "express";
 import { AppDataSource } from "../Config/dbConfig";
 
