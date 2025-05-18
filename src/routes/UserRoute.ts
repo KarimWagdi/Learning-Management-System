@@ -3,7 +3,7 @@ import UserController from "../controller/UserController";
 const router = Router();
 
 router.get("/", UserController.getUser);
-router.post("/login", UserController.getUser);
+router.post("/login", UserController.loginUser);
 router.get('/:id', UserController.getUserById)
 router.post("/", UserController.addUser);
 router.delete("/:id", UserController.deleteUser);

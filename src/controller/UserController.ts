@@ -19,13 +19,13 @@ export default class UserController {
         role: req.body.role,
         // imgUrl: req.body.imgUrl,
       });
-      await userRepo.save(newUser);     
+      await userRepo.save(newUser);
       res.status(200).json(newUser);
     } catch (error) {
-      res.status(500).json({ message: "Internal Server Errors" , error});
+      res.status(500).json({ message: "Internal Server Errors", error });
     }
   };
-  
+
   // Login user
   public static loginUser = async (
     req: Request,
@@ -33,24 +33,25 @@ export default class UserController {
   ): Promise<void> => {
     try {
       const userRepo = AppDataSource.getRepository(User);
-      const user = await userRepo.findOneBy({email: req.body.email});
+      const user = await userRepo.findOneBy({ email: req.body.email })
       if (!user) {
-         res.status(404).json({ message: "User not found" });
-         return
+        res.status(404).json({ message: "User not found" });
+        return
       }
       const isPasswordValid = await bcrypt.compare(
         req.body.password,
         user.password
       );
       if (!isPasswordValid) {
-         res.status(401).json({ message: "Invalid password" });
-         return
+        res.status(401).json({ message: "Invalid password" });
+        return
       }
+      res.status(200).json({ user, message: 'login successfully' })
     } catch (error) {
       res.status(500).json({ message: "Internal Server Error" });
     }
   }
-      // Generate a token here if needed
+  // Generate a token here if needed
   // Get all users
 
   public static getUser = async (
@@ -91,11 +92,12 @@ export default class UserController {
     try {
       const userRepo = AppDataSource.getRepository(User);
       const user = await userRepo.findOneBy({ id: parseInt(req.params.id) });
-      if (user) {
-        userRepo.merge(user, req.body);
-      } else {
+      if (!user) {
         res.status(404).json({ message: "User not found" });
+        return
       }
+      const updatedUser = await userRepo.merge(user, req.body)
+      res.status(200).json({ updatedUser, message: "User updated successfully" });
     } catch (error) {
       res.status(500).json({ message: "Internal Server Error" });
     }
@@ -109,7 +111,10 @@ export default class UserController {
       const id = Number(req.params.id);
       const userRepo = AppDataSource.getRepository(User);
       const user = await userRepo.findOneBy({ id });
-      if (!user) res.status(404).json({ message: "user not found" });
+      if (!user) {
+        res.status(404).json({ message: "user not found" });
+        return
+      }
       await userRepo.delete(id);
       res.status(200).json({ message: "user deleted successfully" });
     } catch (error) {

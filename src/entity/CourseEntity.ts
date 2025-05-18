@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { CourseTask } from "./CourseTaskEntity";
+import { CategoryCourse } from "./CategoryCourseEntity";
 
 @Entity()
 export class Course {
@@ -32,4 +33,7 @@ export class Course {
 
     @OneToMany(() => CourseTask, (courseTask) => courseTask.course_id)
     courseTask!: CourseTask[]
+
+    @OneToMany(() => CategoryCourse, (categoryCourse) => categoryCourse.course_id)
+    categoryCourses!: CategoryCourse[]
 }

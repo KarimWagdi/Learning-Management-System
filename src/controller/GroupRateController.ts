@@ -7,7 +7,7 @@ export default class GroupRateController {
     try {
       const groupRateRepo = AppDataSource.getRepository(GroupRate);
       const rate = await groupRateRepo.findOneBy({ id: +req.params.id });
-      if (!rate)  res.status(404).json({ message: "Not found" });
+      if (!rate) res.status(404).json({ message: "Not found" });
       res.status(200).json(rate);
     } catch (err) {
       res.status(500).json({ error: "Internal Server Error" });
@@ -29,15 +29,15 @@ export default class GroupRateController {
     try {
       const groupRateRepo = AppDataSource.getRepository(GroupRate);
       const rate = await groupRateRepo.findOneBy({ id: +req.params.id });
-      if (!rate)  res.status(404).json({ message: "Not found" });
+      if (!rate) res.status(404).json({ message: "Not found" });
 
       else {
         groupRateRepo.merge(rate, req.body);
-      const result = await groupRateRepo.save(rate);
-      res.json(result);
+        const result = await groupRateRepo.save(rate);
+        res.json(result);
       }
 
-      
+
     } catch (err) {
       res.status(500).json({ error: err });
     }
