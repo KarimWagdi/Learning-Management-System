@@ -40,3 +40,10 @@ export class UserAttach {
   @DeleteDateColumn({ nullable: true })
   deletedAt?: Date;
 }
+
+// object copy it in body for test 
+// {
+//     "img_id_front": "karimfront.png",
+//     "img_id_back": "karimback.png",
+//     "mobile_number": 1234567890
+// }

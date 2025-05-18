@@ -1,6 +1,6 @@
 import { plainToInstance } from "class-transformer";
 import { validate, ValidationError } from 'class-validator';
-import { NextFunction } from "express";
+import { NextFunction, Request } from "express";
 
 const extractErrorRecursively = (error: ValidationError, rawErrors: string[]) => {
     if (error.constraints) {
