@@ -1,0 +1,40 @@
+public static loginUser = async (req: Request, res: Response): Promise<void> => {
+try{
+  console.log('Login request received');
+  const {email, password} = req.body;
+
+  if(!email || !password){
+       res.status(400).json({message: "Email and password are required"});
+       return;
+  }
+  const userRepo = AppDataSource.getRepository(User);
+  const user = await userRepo.findOne({where: {email},select:['id', 'password']});
+
+  if(!user){
+    res.status(401).json({message: "Invalid credentials"});
+    return;
+  }
+  const passwordMatch = await bcrypt.compare(password, user.password);
+
+  if(!passwordMatch){
+    res.status(401).json({message: "Invalid credentials"});
+    return;
+  }
+  const token = generateJWT(user.id);
+
+  res.status(200).json({token});
+}catch(error){
+  res.status(500).json({message: "Internal Server Error"});
+}
+};
+
+public static logoutUser = async (req: Request, res: Response): Promise<void> => {
+    try {
+        // Clear the token from client-side storage
+        res.clearCookie('token');       
+        res.status(200).json({ message: "Logout successful" });
+    } catch (error) {
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+};
+
