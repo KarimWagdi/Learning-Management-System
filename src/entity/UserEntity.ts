@@ -29,6 +29,9 @@ export class User {
     @Column({ nullable: true })
     imgUrl?: string;
 
+    @Column({ nullable: true })
+    token?: string
+
     @CreateDateColumn({ type: "timestamp" })
     createdAt!: Date;
 

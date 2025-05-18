@@ -2,9 +2,10 @@ import { User } from "../entity/UserEntity";
 import { Request, Response } from "express";
 import { AppDataSource } from "../Config/dbConfig";
 import bcrypt from "bcrypt";
+const jwt = require("jsonwebtoken");
+
 export default class UserController {
   // Add a new user
-
   public static addUser = async (
     req: Request,
     res: Response
@@ -19,6 +20,9 @@ export default class UserController {
         role: req.body.role,
         // imgUrl: req.body.imgUrl,
       });
+      const user = await userRepo.save(newUser);
+      const token = jwt.sign({userId:user.id}, process.env.JWT_SECRET, {expiresIn: '1h'})
+      newUser.token = token
       await userRepo.save(newUser);
       res.status(200).json(newUser);
     } catch (error) {
