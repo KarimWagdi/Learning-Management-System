@@ -6,6 +6,7 @@ import GroupRoute from "./GroupRoute"
 import CourseRoute from "./CourseRoute";
 import UserGroupRoute from "./UserGroupRoute"
 import CategoryRoute from './CategoryRoute'
+import SubCategoryRoute from "./SubCategoryRoute";
 
 
 const router = Router();
@@ -17,6 +18,7 @@ router.use("/group", GroupRoute)
 router.use("/userGroup", UserGroupRoute);
 router.use("/course", CourseRoute);
 router.use("/category", CategoryRoute);
+router.use("/subCategory", SubCategoryRoute);
 
 
 
