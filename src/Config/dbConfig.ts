@@ -11,12 +11,11 @@ import { Course } from '../entity/CourseEntity';
 import { Category } from "../entity/CategoryEntity";
 import { CategoryCourse } from "../entity/CategoryCourseEntity";
 import { SubCategory } from "../entity/SubCategoryEntity";
+import { Invoices } from './../entity/InvoicesEntity';
 import { Lecture } from './../entity/LectureEntity';
-
-
 import { Student } from "../entity/StudentEntity"; 
-
 import { InstructorRate } from "../entity/InstructorRateEntitiy";
+
 
 dotenv.config();
 

@@ -6,16 +6,6 @@ import { AppDataSource } from "../Config/dbConfig";
 
 export default class UserGroupController{
 
-    // private userGroupRepo  ;
-
-    // constructor(
-    //     private userGroupRepo: Repository<UserGroup>){
-    //    
-    // }
-
-    // getUserGroupRepo(){
-    //     return this.userGroupRepo ; 
-    // }
     public static addUserGroup = async(req:Request, res:Response):Promise<void>=>{
         try{
             const userGroupRepo = AppDataSource.getRepository(UserGroup) ; 
