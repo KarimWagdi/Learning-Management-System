@@ -1,4 +1,4 @@
-import { Student } from "../entity/StudentRateEntity";
+import { StudentRate } from "../entity/StudentRateEntity";
 import { AppDataSource } from "./../Config/dbConfig";
 import { Request, Response } from "express";
 
@@ -8,18 +8,17 @@ export default class StudentController {
     res: Response
   ): Promise<void> => {
     try {
-      const { group_id, instructor_id, rate_id, comment_id, update_id } =
+      const { group_id, instructor_id, rate, comment } =
         req.body;
-      const studentRepo = AppDataSource.getRepository(Student);
+      const studentRepo = AppDataSource.getRepository(StudentRate);
       const newStudent = studentRepo.create({
         group_id,
         instructor_id,
-        rate_id,
-        comment_id,
-        update_id,
+        rate,
+        comment,
       });
       await studentRepo.save(newStudent);
-      res.status(201).json({ newStudent, message: "student Added Successfly" });
+      res.status(201).json({ newStudent, message: "StudentRate Added Successfly" });
     } catch (error) {
       res.status(500).json({ message: "Internal Server Errors", error });
     }
@@ -30,9 +29,9 @@ export default class StudentController {
     res: Response
   ): Promise<void> => {
     try {
-      const studentRepo = AppDataSource.getRepository(Student);
-      const student = await studentRepo.find();
-      res.status(200).json(student);
+      const studentRepo = AppDataSource.getRepository(StudentRate);
+      const student_ = await studentRepo.find();
+      res.status(200).json(student_);
     } catch (error) {
       res.status(500).json({ message: "Internal Server Error" });
     }
@@ -44,10 +43,10 @@ export default class StudentController {
   ): Promise<void> => {
     try {
       const id = Number(req.params.id);
-      const studentRepo = AppDataSource.getRepository(Student);
-      const student = await studentRepo.findOneBy({ id: id });
+      const studentRepo = AppDataSource.getRepository(StudentRate);
+      const student_ = await studentRepo.findOneBy({ id: id });
 
-      if (student) res.status(200).json({ student, message: "success fetch" });
+      if (student_) res.status(200).json({ student_, message: "success fetch" });
     } catch (error) {
       res.status(500).json({ message: "Internal Server Error" });
     }
@@ -60,9 +59,9 @@ export default class StudentController {
     try {
       const id = req.params.id;
       console.log(id);
-      const studentRepo = AppDataSource.getRepository(Student);
-      const student = await studentRepo.delete(id);
-      res.status(200).json({ message: "student Deleted Successfly" });
+      const studentRepo = AppDataSource.getRepository(StudentRate);
+      const student_ = await studentRepo.delete(id);
+      res.status(200).json({ message: "StudentRate Deleted Successfly" });
     } catch (error) {
       res.status(500).json({ message: "Internal Server Error" });
     }
@@ -74,24 +73,23 @@ export default class StudentController {
   ): Promise<void> => {
     try {
       const id = Number(req.params.id);
-      const { group_id, instructor_id, rate_id, comment_id, update_id } =
+      const { group_id, instructor_id, rate, comment } =
         req.body;
-      const StudentRepo = AppDataSource.getRepository(Student);
-      const student = await StudentRepo.findOne({ where: { id } });
+      const StudentRepo = AppDataSource.getRepository(StudentRate);
+      const student_ = await StudentRepo.findOne({ where: { id } });
 
-      if (!student) {
-        res.status(404).json({ message: "student not found" });
+      if (!student_) {
+        res.status(404).json({ message: "StudentRate not found" });
         return;
       }
-      StudentRepo.merge(student, {
+      StudentRepo.merge(student_, {
         group_id,
         instructor_id,
-        rate_id,
-        comment_id,
-        update_id,
+        rate,
+        comment
       });
-      await StudentRepo.save(student);
-      res.status(200).json({ student, message: "student Updated Successfly" });
+      await StudentRepo.save(student_);
+      res.status(200).json({ student_, message: "StudentRate Updated Successfly" });
     } catch (error) {
       res.status(500).json({ message: "Internal Server Error" });
     }

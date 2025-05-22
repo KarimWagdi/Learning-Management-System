@@ -9,13 +9,11 @@ import { Group } from "../entity/GroupEntity";
 import { GroupRate } from "../entity/GroupRateEntity";
 import { Course } from "../entity/CourseEntity";
 import { Category } from "../entity/CategoryEntity";
-import { CategoryCourse } from "../entity/CategoryCourseEntity";
-import { SubCategory } from "../entity/SubCategoryEntity";
 import { CourseRate } from "../entity/CourseRate";
 import { Invoices } from "./../entity/InvoicesEntity";
 import { Lecture } from "./../entity/LectureEntity";
-import { Student } from "../entity/StudentRateEntity";
 import { InstructorRate } from "../entity/InstructorRateEntitiy";
+import { StudentRate } from "../entity/StudentRateEntity";
 
 dotenv.config();
 
@@ -37,9 +35,11 @@ export const AppDataSource = new DataSource({
     Group,
     GroupRate,
     Category,
-    CategoryCourse,
-    SubCategory,
     InstructorRate,
+    CourseRate,
+    Invoices,
+    Lecture ,
+    StudentRate
   ],
   migrations: [],
   subscribers: [],

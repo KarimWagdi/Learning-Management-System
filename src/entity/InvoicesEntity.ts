@@ -1,5 +1,5 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { User } from "./UserEntity";
 
 
 
@@ -9,11 +9,14 @@ export class Invoices{
     @PrimaryGeneratedColumn()
     id!: number ;
 
+        
     @Column()
     groupId!: number; 
 
+    @ManyToOne(()=> User , (user) => user.id)
+    @JoinColumn({name:"instructorId"})
     @Column()
-    instructorId!: number ; 
+    instructorId!: User  ; 
 
     @Column()
     topicId!:number ; 

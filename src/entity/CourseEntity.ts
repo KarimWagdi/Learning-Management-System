@@ -17,7 +17,7 @@ export class Course {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @OneToMany(() => Category, (category) => category.id)
+  @ManyToOne(() => Category, (category) => category.id)
   @JoinColumn({ name: "category_id" })
   category_id!: Category;
 

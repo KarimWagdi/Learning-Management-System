@@ -4,6 +4,7 @@ import {
   DeleteDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -32,6 +33,6 @@ export class Category {
   @DeleteDateColumn({ nullable: true })
   deletedAt?: Date;
 
-  @ManyToOne(() => Course, (course) => course.category_id)
+  @OneToMany(() => Course, (course) => course.category_id)
   course!: Course[];
 }
