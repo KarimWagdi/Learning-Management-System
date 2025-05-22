@@ -12,6 +12,11 @@ import { Category } from "../entity/CategoryEntity";
 import { CategoryCourse } from "../entity/CategoryCourseEntity";
 import { SubCategory } from "../entity/SubCategoryEntity";
 import { CourseRate } from "../entity/CourseRate";
+import { Invoices } from './../entity/InvoicesEntity';
+import { Lecture } from './../entity/LectureEntity';
+import { Student } from "../entity/StudentEntity"; 
+import { InstructorRate } from "../entity/InstructorRateEntitiy";
+
 
 dotenv.config();
 
@@ -22,9 +27,9 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  synchronize: false,
+  synchronize: true,
   logging: false,
-  entities: [User, Course, CourseTask, UserAttach, UserGroup, Group, GroupRate, Category, CategoryCourse,SubCategory,CourseRate ],
+  entities: [User, Course, CourseTask, UserAttach, UserGroup, Group, GroupRate, Category, CategoryCourse, SubCategory, InstructorRate],
   migrations: [],
   subscribers: [],
 });

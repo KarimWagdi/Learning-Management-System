@@ -7,7 +7,10 @@ import CourseRoute from "./CourseRoute";
 import UserGroupRoute from "./UserGroupRoute"
 import CategoryRoute from './CategoryRoute'
 import SubCategoryRoute from "./SubCategoryRoute";
-
+import  InvoiceRoute from "./InvoiceRoute"
+import LectureRoute from "./LectureRoute";
+import StudentRoute from "./StudentRoute";
+import InstructorRoute from "./InstructorRateRoute";
 
 
 const router = Router();
@@ -20,8 +23,10 @@ router.use("/userGroup", UserGroupRoute);
 router.use("/course", CourseRoute);
 router.use("/category", CategoryRoute);
 router.use("/subCategory", SubCategoryRoute);
-
-
+router.use("/invoice" , InvoiceRoute ); 
+router.use("/Lecture", LectureRoute);
+router.use("/student", StudentRoute );
+router.use("/instructor", InstructorRoute);
 
 
 export default router;
