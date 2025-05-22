@@ -1,29 +1,37 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { CategoryCourse } from "./CategoryCourseEntity";
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
+import { Course } from "./CourseEntity";
 
 @Entity()
 export class Category {
-    @PrimaryGeneratedColumn()
-    id!: number
+  @PrimaryGeneratedColumn()
+  id!: number;
 
-    @Column({ unique: true, nullable: false })
-    categoryName!: string
+  @Column({ unique: true, nullable: false })
+  categoryName!: string;
 
-    @Column({ nullable: false })
-    categoryDescription!: string
+  @Column({ nullable: false })
+  categoryDescription!: string;
 
-    @Column({ nullable: false })
-    categoryImage!: string
+  @Column({ nullable: false })
+  categoryImage!: string;
 
-    @CreateDateColumn({ type: 'timestamp' })
-    createdAt!: Date
+  @CreateDateColumn({ type: "timestamp" })
+  createdAt!: Date;
 
-    @UpdateDateColumn({ type: 'timestamp' })
-    updatedAt!: Date
+  @UpdateDateColumn({ type: "timestamp" })
+  updatedAt!: Date;
 
-    @DeleteDateColumn({ nullable: true })
-    deletedAt?: Date
+  @DeleteDateColumn({ nullable: true })
+  deletedAt?: Date;
 
-    @OneToMany(() => CategoryCourse, (categoryCourse) => categoryCourse.category_id)
-    categoryCourses!: CategoryCourse[]
+  @ManyToOne(() => Course, (course) => course.category_id)
+  course!: Course[];
 }

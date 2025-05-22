@@ -1,39 +1,50 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
 import { CourseTask } from "./CourseTaskEntity";
-import { CategoryCourse } from "./CategoryCourseEntity";
+import { Category } from "./CategoryEntity";
 
 @Entity()
 export class Course {
-    @PrimaryGeneratedColumn()
-    id!: number;
+  @PrimaryGeneratedColumn()
+  id!: number;
 
-    @Column()
-    imageUrl!: string
+  @OneToMany(() => Category, (category) => category.id)
+  @JoinColumn({ name: "category_id" })
+  category_id!: Category;
 
-    @Column()
-    duration!: string
+  @Column()
+  imageUrl!: string;
 
-    @Column()
-    rate!: number
+  @Column()
+  duration!: string;
 
-    @Column()
-    details!: string
+  @Column()
+  rate!: number;
 
-    @Column()
-    videoUrl!: string
+  @Column()
+  details!: string;
 
-    @CreateDateColumn({ type: "timestamp" })
-    createdAt!: Date;
+  @Column()
+  videoUrl!: string;
 
-    @UpdateDateColumn({ type: "timestamp" })
-    updatedAt!: Date;
+  @CreateDateColumn({ type: "timestamp" })
+  createdAt!: Date;
 
-    @DeleteDateColumn({ nullable: true })
-    deletedAt?: Date;
+  @UpdateDateColumn({ type: "timestamp" })
+  updatedAt!: Date;
 
-    @OneToMany(() => CourseTask, (courseTask) => courseTask.course_id)
-    courseTask!: CourseTask[]
+  @DeleteDateColumn({ nullable: true })
+  deletedAt?: Date;
 
-    @OneToMany(() => CategoryCourse, (categoryCourse) => categoryCourse.course_id)
-    categoryCourses!: CategoryCourse[]
+  @OneToMany(() => CourseTask, (courseTask) => courseTask.course_id)
+  courseTask!: CourseTask[];
 }

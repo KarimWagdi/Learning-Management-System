@@ -11,11 +11,10 @@ import { UserGroup } from "./UserGroupEntity";
 
 @Entity()
 export class Group {
-
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column() 
+  @Column()
   number_of_student!: number;
 
   @Column() // Default value for startDate
