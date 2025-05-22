@@ -12,6 +12,7 @@ import LectureRoute from "./LectureRoute";
 import StudentRoute from "./StudentRoute";
 import InstructorRoute from "./InstructorRateRoute";
 
+
 const router = Router();
 
 router.use("/user", UserRoute);
@@ -26,5 +27,6 @@ router.use("/invoice" , InvoiceRoute );
 router.use("/Lecture", LectureRoute);
 router.use("/student", StudentRoute );
 router.use("/instructor", InstructorRoute);
+
 
 export default router;
