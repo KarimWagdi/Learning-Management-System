@@ -9,6 +9,7 @@ import CategoryRoute from './CategoryRoute'
 import SubCategoryRoute from "./SubCategoryRoute";
 
 
+
 const router = Router();
 
 router.use("/user", UserRoute);
@@ -19,6 +20,7 @@ router.use("/userGroup", UserGroupRoute);
 router.use("/course", CourseRoute);
 router.use("/category", CategoryRoute);
 router.use("/subCategory", SubCategoryRoute);
+
 
 
 
