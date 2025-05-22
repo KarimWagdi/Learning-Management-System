@@ -5,18 +5,24 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from "typeorm";
+import { Group } from "./GroupEntity";
+import { User } from "./UserEntity";
 
 @Entity()
 export class GroupRate {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column()
-  user_id!: number;
+  @ManyToOne(() => User, (user) => user.id)
+  @JoinColumn({ name: "user_id" })
+  user_id!: User;
 
-  @Column()
-  group_id!: number;
+  @ManyToOne(() => Group, (group) => group.id)
+  @JoinColumn({ name: "group_id" })
+  group_id!: Group;
 
   @Column({ type: "int", width: 1 })
   rate!: number;

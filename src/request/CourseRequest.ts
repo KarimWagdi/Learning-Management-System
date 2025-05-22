@@ -1,7 +1,13 @@
 import { IsNotEmpty, IsNumber, IsOptional, IsString, Length, MinLength } from "class-validator";
+import { Category } from "../entity/CategoryEntity";
 
 
 export class addCourseRequest {
+
+    @IsNotEmpty()
+    @IsString()
+    category_id!: Category
+
     @IsNotEmpty()
     @IsString()
     imageUrl!: string

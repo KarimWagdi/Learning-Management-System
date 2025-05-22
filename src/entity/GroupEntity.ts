@@ -3,30 +3,38 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { UserGroup } from "./UserGroupEntity";
+import { Course } from "./CourseEntity";
+import { User } from "./UserEntity";
 
 @Entity()
 export class Group {
   @PrimaryGeneratedColumn()
   id!: number;
 
+  @OneToMany(()=> Course, (course) => course.id ) 
+  @JoinColumn({ name: "course_id" })
+  course_id!: Course;
+
+  @OneToMany(() => User, (user) => user.id)
+  @JoinColumn({ name: "user_id" })
+  user_id!: User;
+
   @Column()
   number_of_student!: number;
 
-  @Column() // Default value for startDate
+  @Column() 
   startDate!: number;
 
-  @Column() // Default value for endDate
+  @Column()
   endDate!: number;
 
-  @Column({ default: "" }) // Default value for courses
-  courses!: string;
-
-  @Column({ default: "" }) // Default value for review
+  @Column({ default: "" })
   review!: string;
 
   @CreateDateColumn({ type: "timestamp" })

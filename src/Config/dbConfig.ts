@@ -1,22 +1,21 @@
 import "reflect-metadata";
 import dotenv from "dotenv";
-import { UserGroup } from '../entity/UserGroupEntity';
+import { UserGroup } from "../entity/UserGroupEntity";
 import { DataSource } from "typeorm";
 import { User } from "../entity/UserEntity";
 import { CourseTask } from "../entity/CourseTaskEntity";
-import { UserAttach } from '../entity/UserAttachEntity'
+import { UserAttach } from "../entity/UserAttachEntity";
 import { Group } from "../entity/GroupEntity";
 import { GroupRate } from "../entity/GroupRateEntity";
-import { Course } from '../entity/CourseEntity';
+import { Course } from "../entity/CourseEntity";
 import { Category } from "../entity/CategoryEntity";
 import { CategoryCourse } from "../entity/CategoryCourseEntity";
 import { SubCategory } from "../entity/SubCategoryEntity";
 import { CourseRate } from "../entity/CourseRate";
-import { Invoices } from './../entity/InvoicesEntity';
-import { Lecture } from './../entity/LectureEntity';
-import { Student } from "../entity/StudentEntity"; 
+import { Invoices } from "./../entity/InvoicesEntity";
+import { Lecture } from "./../entity/LectureEntity";
+import { Student } from "../entity/StudentRateEntity";
 import { InstructorRate } from "../entity/InstructorRateEntitiy";
-
 
 dotenv.config();
 
@@ -29,7 +28,19 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: true,
   logging: false,
-  entities: [User, Course, CourseTask, UserAttach, UserGroup, Group, GroupRate, Category, CategoryCourse, SubCategory, InstructorRate],
+  entities: [
+    User,
+    Course,
+    CourseTask,
+    UserAttach,
+    UserGroup,
+    Group,
+    GroupRate,
+    Category,
+    CategoryCourse,
+    SubCategory,
+    InstructorRate,
+  ],
   migrations: [],
   subscribers: [],
 });

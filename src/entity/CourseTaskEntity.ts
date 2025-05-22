@@ -6,6 +6,7 @@ import {
   DeleteDateColumn,
   ManyToOne,
   JoinColumn,
+  Column,
 } from "typeorm";
 import { User } from "./UserEntity";
 import { Course } from "./CourseEntity";
@@ -22,6 +23,18 @@ export class CourseTask {
   @ManyToOne(() => User, (user) => user.id)
   @JoinColumn({ name: "user_id" })
   user_id!: User;
+
+  @Column()
+  taskName!: string;
+
+  @Column()
+  taskDescription!: string;
+
+  @Column()
+  taskImage!: string;
+  
+  @Column()
+  taskDocUrl!: string;
 
   @CreateDateColumn({ type: "timestamp" })
   createdAt!: Date;

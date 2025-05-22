@@ -1,10 +1,11 @@
 import { IsNotEmpty, IsNumber, IsOptional } from "class-validator";
+import { Course } from "../entity/CourseEntity";
 
 
 export class addInstructorRate {
     @IsNotEmpty()
     @IsNumber()
-    courseId!: number
+    course_id!: Course
 
     @IsNotEmpty()
     @IsNumber()

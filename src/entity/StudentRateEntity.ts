@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateCol
 
 
 @Entity()
-export class Student {
+export class StudentRate {
   @PrimaryGeneratedColumn()
   id!: number;
 
@@ -13,13 +13,10 @@ export class Student {
   instructor_id!: number;
 
   @Column()
-  rate_id!: number;
+  rate!: number;
 
   @Column()
-  comment_id!: number;
-
-  @Column()
-  update_id!: number;
+  comment!: number;
 
   @CreateDateColumn({ type: "timestamp" })
   createdAt!: Date;
