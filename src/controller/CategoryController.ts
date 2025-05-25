@@ -7,7 +7,7 @@ export default class CategoryController {
     public static getAllCategory = async (req: Request, res: Response): Promise<void> => {
         try {
             const categoryRepo = AppDataSource.getRepository(Category)
-            const allCategory = await categoryRepo.find({ relations: ['categoryCourses'] })
+            const allCategory = await categoryRepo.find({ relations: ["course","course.users"] })
             if (!allCategory) {
                 res.status(404).json({ message: 'categories not found' })
                 return

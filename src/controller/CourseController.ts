@@ -5,9 +5,9 @@ import { Request, Response } from "express";
 export default class CourseController {
     public static addCourse = async (req: Request, res: Response): Promise<void> => {
         try {
-            const { imageUrl, duration, rate, details, videoUrl } = req.body
+            const { imageUrl, duration, rate, details, videoUrl, category_id } = req.body
             const courseRepo = AppDataSource.getRepository(Course);
-            const newCourse = courseRepo.create({ imageUrl, duration, rate, details, videoUrl });
+            const newCourse = courseRepo.create({ imageUrl, duration, rate, details, videoUrl, category_id });
             await courseRepo.save(newCourse);
             res.status(201).json({ newCourse, message: 'Course Added Successfly' });
         } catch (error) {
@@ -18,7 +18,11 @@ export default class CourseController {
     public static getCourse = async (req: Request, res: Response): Promise<void> => {
         try {
             const courseRepo = AppDataSource.getRepository(Course);
-            const course = await courseRepo.find();
+            const course = await courseRepo.find({
+                relations: {
+                    category_id: true,
+                },
+            });
             res.status(200).json(course);
         } catch (error) {
             res.status(500).json({ message: "Internal Server Error" });
